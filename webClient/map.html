@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- Ceci permet d'inclure les fichiers CSS -->
+		<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+		<link href="styles.css" rel="stylesheet" type="text/css">
+		
+		<!-- Ceci permet d'inclure les fichiers JavaScript de jQuery, jQuery UI, Google Maps ainsi que map.js -->
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		
+		<script type="text/javascript" src="map.js"></script>
+
+		<!--Inlusion Bootstrap et le fonts-->
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Eczar|Lato" rel="stylesheet">
+
+
+		<title>HackaTown 2017 - Smart Town Flow : UNLIMITED</title>
+	</head>
+
+	<!--Corps-->
+	<body>
+		<div class = "container-fluid">
+            <!--Titre-->
+			<div class = "page-header"> 
+			<h1>Smart Town Flow : UNLIMITED</h1>
+			</div>
+
+			<!--Date Picker Calender-->
+			<div class = "ui-widget col-sm-3"> 
+				<label for="date">Date : <label></label> </label><input id="date" type="date" value="2017-02-05", onchange="updateStuff()"/>
+			</div>
+
+			<!--Time Slider-->
+			<div class = "col-sm-9" >
+				<label for="sliderText">Hours range:</label>
+	  			<input type="text" id="sliderText" readonly> </br>
+				<div id="timeSlider"></div>
+			</div>
+		</div>
+		
+		<p></p>
+		<!--Carte-->
+		<div id="map"></div>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcucJ0M7Cuf3naMzPrelBe4h1mRkZIMSw&callback=initAll" async defer></script>
+
+	</body>
+</html>
