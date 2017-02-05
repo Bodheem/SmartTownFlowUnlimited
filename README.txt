@@ -1,6 +1,6 @@
 README
 
-Pour obtenir les événements de Facebook, il faut rouler le serveur NpmQueryServer:
+Pour obtenir les événements de Facebook, il faut rouler le serveur facebook-events-by-location:
 	npm install
 	npm run
 Pour le serveur Python:
