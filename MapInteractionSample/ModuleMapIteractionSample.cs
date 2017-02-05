@@ -43,7 +43,7 @@ namespace MapInteractionSample
             if (mapService != null)
             {
                 // Add a layer to the maps to be able to add the Fires on a specific layer.
-                mapService.RegisterLayer(new LayerDescriptor(FireMapObject.FiresLayerId, FireMapObject.FireLayerName));
+                mapService.RegisterLayer(new LayerDescriptor(EventMapObject.FiresLayerId, EventMapObject.FireLayerName));
             }
         }
 

@@ -15,7 +15,7 @@ namespace MapInteractionSample
     /// With the MapObject attribute, you can specify the view to use.
     /// </summary>
     [MapObject(IdString, typeof(FireMapObjectView), false)]
-    public sealed class FireMapObject : MapObject
+    public sealed class EventMapObject : MapObject
     {
         #region Constants
 
@@ -51,12 +51,12 @@ namespace MapInteractionSample
 
         #region Constructors
 
-        public FireMapObject() : base(FireMapObjectId)
+        public EventMapObject() : base(FireMapObjectId)
         {
             Tags = new List<string>(2);
         }
 
-        public FireMapObject(double latitude, double longitude, int population = 10)
+        public EventMapObject(double latitude, double longitude, int population = 10)
                     : base(FireMapObjectId)
         {
             Latitude = latitude;

@@ -25,8 +25,8 @@ namespace MapInteractionSample
     {
         #region Constants
 
-        private static ObservableCollection<FireMapObject> m_fires = new ObservableCollection<FireMapObject>();
-        private static List<FireMapObject> all_Fires = new List<FireMapObject>();
+        private static ObservableCollection<EventMapObject> m_fires = new ObservableCollection<EventMapObject>();
+        private static List<EventMapObject> all_Fires = new List<EventMapObject>();
         public static HashSet<string> all_Tags = new HashSet<string>();
         #endregion
 
@@ -68,7 +68,7 @@ namespace MapInteractionSample
         #region Event Handlers
 
         /// <summary>
-        /// This is to update the map when an object is added/removed from the fire list.
+        /// This is to update the map when an object is added/removed from the @event list.
         /// The Invalidate(...) is important to notify the map of the changes.
         /// </summary>
         private void OnFiresCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -100,12 +100,13 @@ namespace MapInteractionSample
         {
             m_fires.CollectionChanged += OnFiresCollectionChanged;
             all_Tags.Add("All");
-            string json = System.IO.File.ReadAllText("C:/Users/Nikolay/Downloads/Eventbrite.json");
+            //string json = System.IO.File.ReadAllText("C:/Users/Nikolay/Downloads/Eventbrite.json");
+            string json = System.IO.File.ReadAllText("C:/Users/Nikolay/Downloads/events.json");
             JArray a = JArray.Parse(json);
             dynamic dynObj = JsonConvert.DeserializeObject(json);
             foreach (var item in dynObj)
             {
-                FireMapObject newEvent = new FireMapObject();
+                EventMapObject newEvent = new EventMapObject();
                 newEvent.Name = item.name;
                 newEvent.Description = item.description;
                 newEvent.Longitude = item.location.longitude;
@@ -127,7 +128,7 @@ namespace MapInteractionSample
         }
 
         /// <summary>
-        /// Simple thread to generate a fire every 5 second on a random location in montreal.
+        /// Simple thread to generate a @event every 5 second on a random location in montreal.
         /// </summary>
         private void OnThreadStart()
         {
@@ -142,7 +143,7 @@ namespace MapInteractionSample
                     var lat = Convert.ToDouble("45." + random.Next(405052, 682052));
                     var lon = Convert.ToDouble("-73." + random.Next(486714, 981099));
 
-                    var fire = new FireMapObject(lat, lon)
+                    var fire = new EventMapObject(lat, lon)
                     {
                         Description = "Fire!",
                         Date = DateTime.Now
@@ -162,9 +163,9 @@ namespace MapInteractionSample
 
         #region Public Methods
 
-        public static ReadOnlyObservableCollection<FireMapObject> GetFires()
+        public static ReadOnlyObservableCollection<EventMapObject> GetFires()
         {
-            return new ReadOnlyObservableCollection<FireMapObject>(m_fires);
+            return new ReadOnlyObservableCollection<EventMapObject>(m_fires);
         }
 
         public static HashSet<string> GetTags()
@@ -172,7 +173,7 @@ namespace MapInteractionSample
             return all_Tags;
         }
 
-        public static ReadOnlyObservableCollection<FireMapObject> GetNEvents(TimeSpan hour, DateTime selectedDate, string tag ="All")
+        public static ReadOnlyObservableCollection<EventMapObject> GetNEvents(TimeSpan hour, DateTime selectedDate, string tag ="All")
         {
             // Clear everything
             for (int i = m_fires.Count - 1; i >= 0; i--)
@@ -186,8 +187,8 @@ namespace MapInteractionSample
             //TimeSpan end = new TimeSpan(hour,30,0);
             TimeSpan end = hour.Add(new TimeSpan(0, 30, 0));
 
-            //List<FireMapObject> newEvents = new List<FireMapObject>(all_Fires.GetRange(0,10));
-            List<FireMapObject> newEvents = new List<FireMapObject>(
+            //List<EventMapObject> newEvents = new List<EventMapObject>(all_Fires.GetRange(0,10));
+            List<EventMapObject> newEvents = new List<EventMapObject>(
                 all_Fires.FindAll(x => x.Date.Day == selectedDate.Day && x.Date.Month == selectedDate.Month
                 && (x.Date.TimeOfDay >= start && x.Date.TimeOfDay <= end)
                   )
@@ -204,17 +205,17 @@ namespace MapInteractionSample
                 m_fires.Add(newEvents[i]);
             }
 
-            return new ReadOnlyObservableCollection<FireMapObject>(m_fires);
+            return new ReadOnlyObservableCollection<EventMapObject>(m_fires);
         }
 
-        public static List<FireMapObject> GetAllFires()
+        public static List<EventMapObject> GetAllFires()
         {
             return all_Fires;
         }
 
-        public static void RemoveFire(FireMapObject fire)
+        public static void RemoveFire(EventMapObject @event)
         {
-            m_fires.Remove(fire);
+            m_fires.Remove(@event);
         }
 
 

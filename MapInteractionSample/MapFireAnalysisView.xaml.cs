@@ -33,7 +33,7 @@ namespace MapInteractionSample
 
         public DateTime selectedDate = DateTime.Now;
         public string selectedTag = "All";
-        //public List<FireMapObject> all_Fires = new List<FireMapObject>();
+        //public List<EventMapObject> all_Fires = new List<EventMapObject>();
         public HashSet<String> allTags = new HashSet<string>();
 
         #endregion
@@ -78,7 +78,7 @@ namespace MapInteractionSample
             // Remove an item from the map.
             if (m_fireList.SelectedItem != null)
             {
-               FireMapObjectProvider.RemoveFire((FireMapObject)m_fireList.SelectedItem);
+               FireMapObjectProvider.RemoveFire((EventMapObject)m_fireList.SelectedItem);
             }
         }
 
@@ -87,7 +87,7 @@ namespace MapInteractionSample
             // Take the item from the list, gets the longitude and latitude and set the center of the map.
             if (m_fireList.SelectedItem != null)
             {
-                var fire = m_fireList.SelectedItem as FireMapObject;
+                var fire = m_fireList.SelectedItem as EventMapObject;
                 m_mapControl.Center = new GeoCoordinate(fire.Latitude, fire.Longitude);
                 
             }

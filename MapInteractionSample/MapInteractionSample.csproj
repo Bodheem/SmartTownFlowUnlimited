@@ -84,7 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FireMapObject.cs" />
+    <Compile Include="EventMapObject.cs" />
     <Compile Include="FireMapObjectProvider.cs" />
     <Compile Include="FireMapObjectView.xaml.cs">
       <DependentUpon>FireMapObjectView.xaml</DependentUpon>

@@ -9,7 +9,7 @@ using System.Windows;
 namespace MapInteractionSample
 {
     /// <summary>
-    /// This class handle the display of the FireMapObject on the map.
+    /// This class handle the display of the EventMapObject on the map.
     /// The view must inherit from MapObjectView.
     /// You can display what you want in the xaml at this point.
     /// </summary>
@@ -56,12 +56,12 @@ namespace MapInteractionSample
             textBlock.Visibility = IsFireSelected ? Visibility.Visible : Visibility.Hidden;
             if (textBlock.Visibility == Visibility.Visible)
             {
-                string tags = ((FireMapObject) MapObject).Tags.Aggregate((i, j) => i + "," + j);
+                string tags = ((EventMapObject) MapObject).Tags.Aggregate((i, j) => i + "," + j);
                 textBlock.Text =
-                    "Name " + ((FireMapObject)MapObject).Name +
-                    "\nStart Time : " + ((FireMapObject)MapObject).StartTime +
-                    "\nEnd Time : " + ((FireMapObject)MapObject).Date +
-                    "\nPopulation " + ((FireMapObject)MapObject).Population.ToString() +
+                    "Name :" + ((EventMapObject)MapObject).Name +
+                    "\n\nStart Time : " + ((EventMapObject)MapObject).StartTime.ToString("HH:mm") +
+                    "\nEnd Time : " + ((EventMapObject)MapObject).Date.ToString("HH:mm") +
+                    "\nAttendence " + ((EventMapObject)MapObject).Population.ToString() +
                     "\nTags : " + tags;
             }
         }
